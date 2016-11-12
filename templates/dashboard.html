@@ -18,8 +18,8 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
   <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="802405708572-kumtebtlteijghvl80ug1crqocqbca03.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="802405708572-kumtebtlteijghvl80ug1crqocqbca03.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 		
 	</head>
@@ -35,38 +35,29 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#">JAK</a>
 
       
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-        $("#youremail").val(profile.getEmail());
-        document.forms["evilForm"].submit();
-
-          };
-    </script>
-    <form action="/bad" method="post" name="evilForm" id="evilForm">
-      <input type="hidden" name="youremail" id="youremail"></input>
-    </form>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">User Name</a></li>
+      <a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
         
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -74,9 +65,34 @@
 </nav>
 
 <div class="jumbotron">
-  <h1>Hello, world!</h1>
-  <p>...</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  <h1>Hello, {{email}}</h1>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="list-group">
+  <a href="/profile" class="list-group-item">Profile</a>
+  <a href="/browse" class="list-group-item">Browse</a>
+  <a href="/search" class="list-group-item">Search</a>
+  <a href="/map" class="list-group-item">Map</a>
+</div>
+    </div>
+    <p>Hello, User
+
+    <p>This is your current mentor: none
+
+    <div class="col-sm-8">
+      
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
 	</body>
 </html>
