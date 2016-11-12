@@ -7,6 +7,9 @@ import urllib
 import random
 import string
 
+import sys
+
+
 app = Flask(__name__)
 #firebase = firebase.FirebaseApplication("https://boiling-torch-8247.firebaseio.com/#-KG09txqVpTw6jUmqcas|c3c8dd314bcafecb0cf13741fe2b0825", None)
 
@@ -15,7 +18,23 @@ def id_generator(size=10, chars=string.ascii_uppercase + string.digits):
 
 @app.route('/')
 def hello_world():
-    return render_template("index.html");
+	print("hello world", file=sys.stderr)
+	return render_template("index.html");
+
+@app.route('/dashboard')
+def dashboard():
+	print("In Dashboard",  file=sys.stderr)
+	print(youremail,  file=sys.stderr)
+	return render_template("dashboard.html", email=youremail);
+
+@app.route('/bad', methods=['POST'])
+def secret_bad_thing():
+	print("here",  file=sys.stderr)
+	global youremail
+	youremail = request.form["youremail"];
+	print(youremail, file=sys.stderr)
+	print("anna was here",  file=sys.stderr)
+	return redirect('/dashboard')
 
 
 # @app.route('/add', methods=['POST'])
