@@ -21,6 +21,10 @@ def hello_world():
 	print("hello world", file=sys.stderr)
 	return render_template("index.html");
 
+@app.route('/createProfile')
+def create_profile():
+	return render_template("createProfile.html");
+
 @app.route('/dashboard')
 def dashboard():
 	print("In Dashboard",  file=sys.stderr)
@@ -110,4 +114,4 @@ def secret_bad_thing():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
