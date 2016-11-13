@@ -78,11 +78,33 @@
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="" class="btn btn-default btn-lg"><i class=""></i> <span class="network-name">Login</span></a>
-                            </li>
-                            <li>
-                                <a href="" class="btn btn-default btn-lg"><i class=""></i> <span class="network-name">Sign Up</span></a>
-                            </li>
+                                <div class="g-signin2 btn btn-default btn-lg" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+
+        $("#youremail").val(profile.getEmail());
+        $("#yourID").val(profile.getId());
+        document.forms["evilForm"].submit();
+
+          };
+    </script>
+    <form action="/bad" method="post" name="evilForm" id="evilForm">
+      <input type="hidden" name="youremail" id="youremail"></input>
+      <input type="hidden" name="yourID" id="yourID"></input>
+    </form>
+</li>
                             <li>
                                 <a href="#about" class="btn btn-default btn-lg"><i class=""></i> <span class="network-name">About Us</span></a>
                             </li>
