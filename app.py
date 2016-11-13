@@ -77,6 +77,8 @@ def createProfile():
 	print (city)
 	country = request.form["country"]
 	print (country)
+	province = request.form["province"]
+	print (province)
 	interests = request.form["interests"]
 	print (interests)
 	bio = request.form["bio"]
@@ -88,11 +90,12 @@ def createProfile():
 	firebase.put(route,"role", role)
  	firebase.put(route, "firstName", firstName)
  	firebase.put(route, "lastName", lastName)
- 	firebase.put(route, "Age", age)
- 	firebase.put(route, "City", city)
- 	firebase.put(route, "Country", country)
- 	firebase.put(route, "Interests", interests)
- 	firebase.put(route, "Bio", bio)
+ 	firebase.put(route, "age", age)
+ 	firebase.put(route, "city", city)
+ 	firebase.put(route, "country", country)
+ 	firebase.put(route, "province", province)
+ 	firebase.put(route, "interests", interests)
+ 	firebase.put(route, "bio", bio)
  	
  	return render_template('createProfile.html');
 
@@ -102,13 +105,13 @@ def viewProfile():
 	results = firebase.get('/', None)
 	for id in results.key():
 		if id == emailAddress:
-			role = results[id]["Role"]	
-			name = results[id]["Name"]
-			age = results[id]["Age"]
-			city = results[id]["City"]
-			country = results[id]["Country"]
-			interests = results[id]["Interests"]
-			bio = results[id]["Bio"]
+			role = results[id]["role"]	
+			name = results[id]["name"]
+			age = results[id]["age"]
+			city = results[id]["city"]
+			country = results[id]["country"]
+			interests = results[id]["interests"]
+			bio = results[id]["bio"]
 			
 			return_list.append(role)
 			return_list.append(name)
@@ -134,11 +137,11 @@ def browse():
 			local_list.append(count)
 			local_list.append(results[id]["firstName"])
 			local_list.append(results[id]["lastName"])
-			local_list.append(results[id]["Age"])
-			local_list.append(results[id]["City"])
-			local_list.append(results[id]["Country"])
-			local_list.append(results[id]["Interests"])
-			local_list.append(results[id]["Bio"])
+			local_list.append(results[id]["age"])
+			local_list.append(results[id]["city"])
+			local_list.append(results[id]["country"])
+			local_list.append(results[id]["interests"])
+			local_list.append(results[id]["bio"])
 			return_list.append(local_list)
 			count = count + 1
 		
