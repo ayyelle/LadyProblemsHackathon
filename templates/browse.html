@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>Testing Hi</title>
+ <!-- Latest compiled and minified CSS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+  <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="802405708572-kumtebtlteijghvl80ug1crqocqbca03.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+		
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JAK</a>
+
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">User Name</a></li>
+      <a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron">
+  <h1>Browse All Mentors</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="list-group">
+  <a href="/browse" class="list-group-item">Browse</a>
+  <a href="/search" class="list-group-item">Search</a>
+  <a href="/map" class="list-group-item">Map</a>
+</div>
+    </div>
+
+
+
+
+    <div class="col-sm-8">
+      
+    {% for entry in return_list %}
+
+
+    <div class="panel panel-primary" >Result {{ entry[0] }}</div>
+            <div class="panel-body" id = {{entry[0]}}>
+                 <p class = "itemID">Name : {{ entry[1] }} {{ entry[2]}}</p>
+                 <p>Age : {{ entry[3] }}</p>
+                 <p>Location : {{ entry[4] }}, {{ entry[5]}}</p>
+                 <p>Interests : {{ entry[6] }}</p>
+                 <p>Bio : {{ entry[7] }}</p>
+            </div>
+
+    {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+	</body>
+</html>
