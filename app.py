@@ -166,15 +166,21 @@ def filter():
 		if (results[id]["role"] == "mentor" and results[id]["interests"] == item_choice and results[id]["city"] == city and results[id]["province"] == province and results[id]["country"] == country):
 			local_list = []
 			local_list.append(count)
-			local_list.append(results[id]["Name"])
-			local_list.append(results[id]["Age"])
-			local_list.append(results[id]["City"])
-			local_list.append(results[id]["Country"])
-			local_list.append(results[id]["Interests"])
-			local_list.append(results[id]["Bio"])
+			local_list.append(results[id]["firstName"])
+			local_list.append(results[id]["lastName"])
+			local_list.append(results[id]["age"])
+			local_list.append(results[id]["city"])
+			local_list.append(results[id]["country"])
+			local_list.append(results[id]["interests"])
+			print(results[id]["interests"])
+			local_list.append(results[id]["bio"])
+			local_list.append(results[id]["email"])
+			print (results[id]["email"])
 			return_list.append(local_list)
 			count = count + 1
-		
+	
+	if len(return_list) == 0:
+		return render_template("filteredBrowseFailed.html")	
 	return render_template("filteredBrowse.html", return_list=return_list)
 # 	animal_choice = request.form["animal"]
 # 	depth_choice = request.form["depth"]

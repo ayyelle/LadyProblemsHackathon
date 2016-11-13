@@ -43,7 +43,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="#">Link</a></li>
       </ul>
       
@@ -65,25 +65,31 @@
 </nav>
 
 <div class="jumbotron">
-  <h1>Hello, {{email}}</h1>
+  <h1>Browse All Mentors</h1>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <div class="list-group">
-  <a href="/createProfile" class="list-group-item">Profile</a>
   <a href="/browse" class="list-group-item">Browse</a>
   <a href="/searchMentors" class="list-group-item">Search</a>
   <a href="/map" class="list-group-item">Map</a>
 </div>
     </div>
-    <p>Hello, User
 
-    <p>This is your current mentor: none
+
+
 
     <div class="col-sm-8">
       
+
+<div class="panel panel-danger">
+    <div class="panel panel-heading " >Sorry No Results</div>
+            <div class="panel-body">
+                 Please try again!
+            </div>
+            </div>
 
 
 
