@@ -19,29 +19,27 @@ def id_generator(size=10, chars=string.ascii_uppercase + string.digits):
 #home page
 @app.route('/')
 def hello_world():
-	print("hello world", file=sys.stderr)
 	return render_template("index.html");
+
+@app.route('/landing')
+def landing():
+	return render_template("landingPage.html")
 
 @app.route('/dashboard')
 def dashboard():
-	print("In Dashboard",  file=sys.stderr)
-	print(youremail,  file=sys.stderr)
 	return render_template("dashboard.html", email=youremail);
 
 @app.route('/bad', methods=['POST'])
 def secret_bad_thing():
-	print("here",  file=sys.stderr)
 	global youremail
 	youremail = request.form["youremail"];
-	print(youremail, file=sys.stderr)
-	print("anna was here",  file=sys.stderr)
 	return redirect('/dashboard')
 
-#dashboard landing page   
-@app.route('/dashboard', methods = ['POST'])
-def dashboard():
-	#emailAddress = request.form["emailAddress"]
-	return render_template("dashboard.html")
+# #dashboard landing page   
+# @app.route('/dashboard', methods = ['POST'])
+# def dashboard():
+# 	#emailAddress = request.form["emailAddress"]
+# 	return render_template("dashboard.html")
 	
 #page for creating profile
 @app.route('/createProfile')
@@ -52,7 +50,7 @@ def createProfilePage():
 @app.route('/profileUpdate', methods=['POST'])
 def createProfile():
 	#id = id_generator()
-	emailAddress = request.form["emailAddress"]
+	emailAddress = yourEmail
  	#route = "/" + emailAddress
  	#result = firebase.get(route, None)
 #  	while result != None:
@@ -61,27 +59,32 @@ def createProfile():
 #  		result = firebase.get(route, None)
  	
  
- 	type = request.form["type"]	
+ 	role = request.form["role"]
+ 	print (role)	
  	name = request.form["name"]
+ 	print (name)
  	age = request.form["age"]
+ 	print (age)
 	city = request.form["city"]
+	print (city)
 	country = request.form["country"]
-	experience = request.form["experienceLevel"]
+	print (country)
 	interests = request.form["interests"]
+	print (interests)
 	bio = request.form["bio"]
+	print (bio)
 	
 	
 	route = "/" + emailAddress
-	firebase.put(route,"Type", type)
+	firebase.put(route,"Role", role)
  	firebase.put(route, "Name", name)
  	firebase.put(route, "Age", age)
  	firebase.put(route, "City", city)
  	firebase.put(route, "Country", country)
- 	firebase.put(route, "Experience", experience)
  	firebase.put(route, "Interests", interests)
  	firebase.put(route, "Bio", bio)
  	
- 	return redirect('/ready');
+ 	return redirect('createProfile.html');
 
 @app.route('/viewProfile', methods=['GET'])
 def viewProfile():
@@ -89,16 +92,15 @@ def viewProfile():
 	results = firebase.get('/', None)
 	for id in results.key():
 		if id == emailAddress:
-			type = results[id]["Type"]	
+			role = results[id]["Role"]	
 			name = results[id]["Name"]
 			age = results[id]["Age"]
 			city = results[id]["City"]
 			country = results[id]["Country"]
-			experience = results[id]["Experience"]
 			interests = results[id]["Interests"]
 			bio = results[id]["Bio"]
 			
-			return_list.append(type)
+			return_list.append(role)
 			return_list.append(name)
 			return_list.append(age)
 			return_list.append(city)
@@ -117,14 +119,13 @@ def browse():
 	results = firebase.get('/', None)
 	count = 1
 	for id in results.keys():
-		if (results[id]["Type"] == "mentor"):
+		if (results[id]["Role"] == "mentor"):
 			local_list = []
 			local_list.append(count)
 			local_list.append(results[id]["Name"])
 			local_list.append(results[id]["Age"])
 			local_list.append(results[id]["City"])
 			local_list.append(results[id]["Country"])
-			local_list.append(results[id]["Experience"])
 			local_list.append(results[id]["Interests"])
 			local_list.append(results[id]["Bio"])
 			return_list.append(local_list)
@@ -140,14 +141,13 @@ def filter():
 	results = firebase.get('/', None)
 	count = 1
 	for id in results.keys():
-		if (results[id]["Type"] == "mentor" and results[id]["Interests"] == item_choice):
+		if (results[id]["Role"] == "mentor" and results[id]["Interests"] == item_choice):
 			local_list = []
 			local_list.append(count)
 			local_list.append(results[id]["Name"])
 			local_list.append(results[id]["Age"])
 			local_list.append(results[id]["City"])
 			local_list.append(results[id]["Country"])
-			local_list.append(results[id]["Experience"])
 			local_list.append(results[id]["Interests"])
 			local_list.append(results[id]["Bio"])
 			return_list.append(local_list)
@@ -233,4 +233,4 @@ def filter():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
