@@ -43,7 +43,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="#">Link</a></li>
       </ul>
       
@@ -65,57 +65,25 @@
 </nav>
 
 <div class="jumbotron">
-  <h1>Edit your Profile!</h1>
+  <h1>Filter Mentors</h1>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <div class="list-group">
-  <a href="/createProfile" class="list-group-item">Profile</a>
   <a href="/browse" class="list-group-item">Browse</a>
   <a href="/searchMentors" class="list-group-item">Search</a>
   <a href="/map" class="list-group-item">Map</a>
 </div>
     </div>
 
+
+
+
     <div class="col-sm-8">
-      <form action = "/profileUpdate" method="post">
-  <div class="form-inline">
-    <label for="firstName">Name</label>
-    <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="emailHelp" placeholder="First Name">
-    <input type="text" class="form-control" name="lastName" id="firstName" aria-describedby="emailHelp" placeholder="Last Name">
-  </div>
-
-  <div class="form-inline">
-    <label>Preferred Role</label>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="role" id="mentor" value="mentor" checked>
-        Mentor
-      </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="role" id="mentee" value="mentee">
-        Mentee
-      </label>
-    </div>
-  </div>
-
-    <div class="form-inline">
-    <label for="city">Location</label>
-    <input type="text" class="form-control" name="city" id="city" aria-describedby="emailHelp" placeholder="city">
-    <input type="text" class="form-control" name="province" id="province" aria-describedby="emailHelp" placeholder="province">
-    <input type="text" class="form-control" name="country" id="country" aria-describedby="emailHelp" placeholder="country">
-  </div>
-
-  <div class="form-inline">
-    <label for="age">Age</label>
-    <input type="text" class="form-control" name="age" id="age" aria-describedby="emailHelp" placeholder="35">
-  </div>
-
-  <div class="form-group">
+      <form action = "/filter" method = "post">
+   <div class="form-group">
     <label for="interests">Interests</label>
     <select multiple class="form-control" name="interests" id="interests">
       <option>Frontend</option>
@@ -125,13 +93,14 @@
       <option>iOS</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="bio">Bio</label>
-    <textarea class="form-control" name="bio"id="bio" rows="3"></textarea>
+<div class="form-inline">
+    <label for="city">Location</label>
+    <input type="text" class="form-control" name="city" id="city" aria-describedby="emailHelp" placeholder="city">
+    <input type="text" class="form-control" name="province" id="province" aria-describedby="emailHelp" placeholder="province">
+    <input type="text" class="form-control" name="country" id="country" aria-describedby="emailHelp" placeholder="country">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+  </form>
 
 
     </div>

@@ -124,7 +124,9 @@ def viewProfile():
 			
 			return render_template("viewProfile.html", return_list = return_list)
 			
-		
+@app.route('/searchMentors')
+def browseForm():
+	return render_template("browseForm.html");		
 			
 @app.route('/browse', methods=['GET'])
 def browse():
@@ -154,11 +156,14 @@ def browse():
 def filter():
 	
 	item_choice = request.form["interests"]
+	city = request.form["city"]
+	province = request.form["province"]
+	country = request.form["country"]
 	return_list = []
 	results = firebase.get('/', None)
 	count = 1
 	for id in results.keys():
-		if (results[id]["Role"] == "mentor" and results[id]["Interests"] == item_choice):
+		if (results[id]["role"] == "mentor" and results[id]["interests"] == item_choice and results[id]["city"] == city and results[id]["province"] == province and results[id]["country"] == country):
 			local_list = []
 			local_list.append(count)
 			local_list.append(results[id]["Name"])
