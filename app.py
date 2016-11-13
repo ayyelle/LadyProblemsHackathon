@@ -25,6 +25,10 @@ def hello_world():
 def landing():
 	return render_template("landingPage.html")
 
+@app.route('/createProfile')
+def create_profile():
+	return render_template("createProfile.html");
+
 @app.route('/dashboard')
 def dashboard():
 	return render_template("dashboard.html", email=youremail);
@@ -33,6 +37,8 @@ def dashboard():
 def secret_bad_thing():
 	global youremail
 	youremail = request.form["youremail"];
+	global yourID
+	yourID = request.form["yourID"];
 	return redirect('/dashboard')
 
 # #dashboard landing page   
@@ -49,20 +55,22 @@ def createProfilePage():
 #creating profile form action 
 @app.route('/profileUpdate', methods=['POST'])
 def createProfile():
-	#id = id_generator()
-	emailAddress = yourEmail
- 	#route = "/" + emailAddress
- 	#result = firebase.get(route, None)
+	id = id_generator()
+	emailAddress = youremail
+#  	route = "/" + emailAddress
+#  	result = firebase.get(route, None)
 #  	while result != None:
 #  		id = id_generator()
 #  		route = "/" + id
 #  		result = firebase.get(route, None)
- 	
+#  	
  
  	role = request.form["role"]
  	print (role)	
- 	name = request.form["name"]
- 	print (name)
+ 	firstName = request.form["firstName"]
+ 	print (firstName)
+ 	lastName = request.form["lastName"]
+ 	print (lastName)
  	age = request.form["age"]
  	print (age)
 	city = request.form["city"]
@@ -75,16 +83,18 @@ def createProfile():
 	print (bio)
 	
 	
-	route = "/" + emailAddress
-	firebase.put(route,"Role", role)
- 	firebase.put(route, "Name", name)
+	route = "/" + yourID
+	firebase.put(route,"email", youremail)
+	firebase.put(route,"role", role)
+ 	firebase.put(route, "firstName", firstName)
+ 	firebase.put(route, "lastName", lastName)
  	firebase.put(route, "Age", age)
  	firebase.put(route, "City", city)
  	firebase.put(route, "Country", country)
  	firebase.put(route, "Interests", interests)
  	firebase.put(route, "Bio", bio)
  	
- 	return redirect('createProfile.html');
+ 	return render_template('createProfile.html');
 
 @app.route('/viewProfile', methods=['GET'])
 def viewProfile():
@@ -119,10 +129,11 @@ def browse():
 	results = firebase.get('/', None)
 	count = 1
 	for id in results.keys():
-		if (results[id]["Role"] == "mentor"):
+		if (results[id]["role"] == "mentor"):
 			local_list = []
 			local_list.append(count)
-			local_list.append(results[id]["Name"])
+			local_list.append(results[id]["firstName"])
+			local_list.append(results[id]["lastName"])
 			local_list.append(results[id]["Age"])
 			local_list.append(results[id]["City"])
 			local_list.append(results[id]["Country"])
@@ -233,4 +244,4 @@ def filter():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
