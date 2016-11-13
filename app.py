@@ -141,7 +141,10 @@ def browse():
 			local_list.append(results[id]["city"])
 			local_list.append(results[id]["country"])
 			local_list.append(results[id]["interests"])
+			print(results[id]["interests"])
 			local_list.append(results[id]["bio"])
+			local_list.append(results[id]["email"])
+			print (results[id]["email"])
 			return_list.append(local_list)
 			count = count + 1
 		

@@ -85,14 +85,20 @@
       
     {% for entry in return_list %}
 
-
-    <div class="panel panel-primary" >Result {{ entry[0] }}</div>
+<div class="panel panel-success">
+    <div class="panel panel-heading " >Mentor {{ entry[0] }}</div>
             <div class="panel-body" id = {{entry[0]}}>
                  <p class = "itemID">Name : {{ entry[1] }} {{ entry[2]}}</p>
                  <p>Age : {{ entry[3] }}</p>
                  <p>Location : {{ entry[4] }}, {{ entry[5]}}</p>
-                 <p>Interests : {{ entry[6] }}</p>
+                <!--  Need to add ability to add multiple interests in createProfile section
+                {% for interest in entry[6] %}
+                 <p>Interests : {{interest}}</p>
+                 {% endfor %} -->
+                 <p>Interests : {{entry[6]}}</p>
                  <p>Bio : {{ entry[7] }}</p>
+                 <p>Email : <a href="mailto:{{entry[8]}}">Email</a></p>
+            </div>
             </div>
 
     {% endfor %}
