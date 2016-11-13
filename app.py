@@ -19,7 +19,7 @@ def id_generator(size=10, chars=string.ascii_uppercase + string.digits):
 #home page
 @app.route('/')
 def hello_world():
-	return render_template("index.html");
+	return render_template("landingPage.html");
 
 @app.route('/landing')
 def landing():
@@ -65,14 +65,14 @@ def createProfile():
 #  		result = firebase.get(route, None)
 #  	
  
- 	role = request.form["role"]
- 	print (role)	
- 	firstName = request.form["firstName"]
- 	print (firstName)
- 	lastName = request.form["lastName"]
- 	print (lastName)
- 	age = request.form["age"]
- 	print (age)
+	role = request.form["role"]
+	print (role)
+	firstName = request.form["firstName"]
+	print (firstName)
+	lastName = request.form["lastName"]
+	print (lastName)
+	age = request.form["age"]
+	print (age)	
 	city = request.form["city"]
 	print (city)
 	country = request.form["country"]
@@ -88,16 +88,16 @@ def createProfile():
 	route = "/" + yourID
 	firebase.put(route,"email", youremail)
 	firebase.put(route,"role", role)
- 	firebase.put(route, "firstName", firstName)
- 	firebase.put(route, "lastName", lastName)
- 	firebase.put(route, "age", age)
- 	firebase.put(route, "city", city)
- 	firebase.put(route, "country", country)
- 	firebase.put(route, "province", province)
- 	firebase.put(route, "interests", interests)
- 	firebase.put(route, "bio", bio)
+	firebase.put(route, "firstName", firstName)
+	firebase.put(route, "lastName", lastName)
+	firebase.put(route, "age", age)
+	firebase.put(route, "city", city)
+	firebase.put(route, "country", country)
+	firebase.put(route, "province", province)
+	firebase.put(route, "interests", interests)
+	firebase.put(route, "bio", bio)
  	
- 	return render_template('createProfile.html');
+	return render_template('createProfile.html');
 
 @app.route('/viewProfile', methods=['GET'])
 def viewProfile():
